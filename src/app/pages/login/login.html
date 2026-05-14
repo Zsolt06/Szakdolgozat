@@ -1,1 +1,121 @@
-<h1>Bejelentkezés</h1>
+<div class="auth-page">
+  <section class="auth-hero">
+    <div class="auth-hero-content">
+      <h1>Bejelentkezés és regisztráció</h1>
+    </div>
+  </section>
+
+  <section class="auth-section">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button
+          type="button"
+          [class.active]="mode === 'login'"
+          (click)="setMode('login')"
+        >
+          Bejelentkezés
+        </button>
+
+        <button
+          type="button"
+          [class.active]="mode === 'register'"
+          (click)="setMode('register')"
+        >
+          Regisztráció
+        </button>
+      </div>
+
+      @if (mode === 'login') {
+        <form class="auth-form" (ngSubmit)="onLogin()">
+          <h2>Bejelentkezés</h2>
+
+          <div class="form-group">
+            <label for="login-email">Email cím</label>
+            <input
+              id="login-email"
+              type="email"
+              name="loginEmail"
+              [(ngModel)]="loginData.email"
+              placeholder="pelda@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Jelszó</label>
+            <input
+              id="login-password"
+              type="password"
+              name="loginPassword"
+              [(ngModel)]="loginData.password"
+              placeholder="Add meg a jelszavad"
+              required
+            />
+          </div>
+
+          <button type="submit" class="auth-submit">
+            Bejelentkezés
+          </button>
+        </form>
+      }
+
+      @if (mode === 'register') {
+        <form class="auth-form" (ngSubmit)="onRegister()">
+          <h2>Regisztráció</h2>
+
+          <div class="form-group">
+            <label for="register-name">Név</label>
+            <input
+              id="register-name"
+              type="text"
+              name="registerName"
+              [(ngModel)]="registerData.name"
+              placeholder="Teljes név"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-email">Email cím</label>
+            <input
+              id="register-email"
+              type="email"
+              name="registerEmail"
+              [(ngModel)]="registerData.email"
+              placeholder="pelda@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-password">Jelszó</label>
+            <input
+              id="register-password"
+              type="password"
+              name="registerPassword"
+              [(ngModel)]="registerData.password"
+              placeholder="Legalább 6 karakter"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="register-confirm-password">Jelszó megerősítése</label>
+            <input
+              id="register-confirm-password"
+              type="password"
+              name="registerConfirmPassword"
+              [(ngModel)]="registerData.confirmPassword"
+              placeholder="Jelszó újra"
+              required
+            />
+          </div>
+
+          <button type="submit" class="auth-submit">
+            Regisztráció
+          </button>
+        </form>
+      }
+    </div>
+  </section>
+</div>

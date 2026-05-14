@@ -1,1 +1,54 @@
-<h1>Borvidékek</h1>
+<section class="page-header">
+  <h1>Magyarország borrégiói és borvidékei</h1>
+  <p>
+    Magyarország 22 borvidéke 6 borrégióba szerveződik. Az alábbi oldalon
+    borrégiók szerint csoportosítva ismerheted meg a legfontosabb területeket,
+    jellegzetes boraikat és ismert pincészeteiket.
+  </p>
+</section>
+
+<section class="region-groups">
+  @for (group of wineRegionGroups; track group.id) {
+    <article class="region-group-card" [id]="group.id">
+      <div class="group-header">
+        <h2>{{ group.name }}</h2>
+        <p>{{ group.description }}</p>
+      </div>
+
+      <div class="wine-region-list">
+        @for (region of group.regions; track region.id) {
+          <span class="scroll-anchor" [id]="region.id"></span>
+          <article class="wine-region-item">
+            <h3>{{ region.name }}</h3>
+
+            <p class="region-description">
+              {{ region.description }}
+            </p>
+
+            <div class="region-details">
+              <div class="detail-box">
+                <h4>Jellegzetes borfajták</h4>
+
+                <ul>
+                  @for (wine of region.famousWines; track wine) {
+                    <li>{{ wine }}</li>
+                  }
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h4>Ismert pincészetek</h4>
+
+                <ol>
+                  @for (winery of region.topWineries; track winery) {
+                    <li>{{ winery }}</li>
+                  }
+                </ol>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </article>
+  }
+</section>

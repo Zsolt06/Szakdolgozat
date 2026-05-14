@@ -1,0 +1,130 @@
+.page-header {
+  background: linear-gradient(to right, #f8f1ec, #fffaf7);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: #7b1e3a;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+  max-width: 55rem;
+  margin: 0 auto;
+}
+
+.region-groups {
+  max-width: 82rem;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  display: grid;
+  gap: 2rem;
+}
+
+.region-group-card {
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05);
+  scroll-margin-top: 6rem;
+}
+
+.group-header {
+  margin-bottom: 2rem;
+}
+
+.group-header h2 {
+  color: #7b1e3a;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 0.75rem;
+}
+
+.group-header p {
+  color: #555;
+  line-height: 1.7;
+}
+
+.wine-region-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wine-region-item {
+  background: #fffaf7;
+  border: 1px solid #eadbd2;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.wine-region-item h3 {
+  color: #7b1e3a;
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.region-description {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.region-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.detail-box {
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.detail-box h4 {
+  color: #7b1e3a;
+  margin-bottom: 0.75rem;
+}
+
+.detail-box ul,
+.detail-box ol {
+  padding-left: 1.25rem;
+}
+
+.detail-box li {
+  color: #555;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.scroll-anchor {
+  display: block;
+  position: relative;
+  top: -6rem;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 3rem 1.25rem;
+  }
+
+  .region-groups {
+    padding: 0 1.25rem;
+  }
+
+  .region-group-card {
+    padding: 1.25rem;
+  }
+
+  .wine-region-item {
+    padding: 1.25rem;
+  }
+}

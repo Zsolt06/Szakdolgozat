@@ -1,0 +1,263 @@
+.wines-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #f8f1ec, #fffaf7);
+}
+
+.hero {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 55rem;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #7b1e3a;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+.wines-layout {
+  max-width: 82rem;
+  margin: 0 auto 4rem;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.filters-card {
+  position: sticky;
+  top: 6rem;
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05);
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.filters-header h2 {
+  color: #7b1e3a;
+  font-size: 1.4rem;
+}
+
+.filters-header button {
+  border: none;
+  background: transparent;
+  color: #7b1e3a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-group {
+  min-width: 0;
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-group label {
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #d9c5bc;
+  border-radius: 0.75rem;
+  background: white;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: 2px solid #7b1e3a;
+  outline-offset: 2px;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 1.5rem;
+}
+
+.results-header h2 {
+  color: #7b1e3a;
+  font-size: 1.8rem;
+}
+
+.results-header p {
+  color: #555;
+}
+
+.wine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem;
+}
+
+.wine-card {
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wine-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.08);
+}
+
+.wine-image-wrapper {
+  height: 16rem;
+  background: #fffaf7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.wine-image-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.wine-card-content {
+  padding: 1.5rem;
+}
+
+.wine-color {
+  display: inline-block;
+  background: #f8f1ec;
+  color: #7b1e3a;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.wine-card h3 {
+  color: #7b1e3a;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.wine-price {
+  color: #333;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.wine-meta {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.wine-meta p {
+  color: #555;
+  line-height: 1.4;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 1.25rem;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.empty-state h3 {
+  color: #7b1e3a;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  color: #555;
+}
+
+.price-filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.sort-box {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 14rem;
+}
+
+.sort-box label {
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+.sort-box select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #d9c5bc;
+  border-radius: 0.75rem;
+  background: white;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.sort-box select:focus {
+  outline: 2px solid #7b1e3a;
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+    .hero {
+        padding: 3rem 1.25rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .wines-layout {
+        grid-template-columns: 1fr;
+        padding: 0 1.25rem;
+    }
+
+    .filters-card {
+        position: static;
+    }
+
+    .results-header {
+        display: grid;
+        gap: 0.5rem;
+    }
+    .price-filter-row {
+        grid-template-columns: 1fr;
+    }
+}

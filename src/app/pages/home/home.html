@@ -1,1 +1,65 @@
-<h1>Magyarországi borkultúra</h1>
+<div class="home-page">
+  <section class="hero">
+  <div class="hero-content">
+    <h1>A magyarországi borkultúra interaktív bemutatása</h1>
+    <p>
+      Fedezd fel Magyarország borvidékeit, jellegzetes borait és pincészeteit
+      egy modern, interaktív webalkalmazás segítségével.
+    </p>
+  </div>
+</section>
+
+<section class="map-section">
+  <div class="map-header">
+    <h2>Interaktív borvidék térkép</h2>
+  </div>
+
+  <div class="region-filter-list">
+    <button
+      class="region-filter-button"
+      [class.active]="selectedGroupId === ''"
+      (click)="selectGroup('')"
+    >
+      Összes borrégió
+    </button>
+
+    @for (group of wineMapGroups; track group.id) {
+      <button
+        class="region-filter-button"
+        [class.active]="selectedGroupId === group.id"
+        (click)="selectGroup(group.id)"
+      >
+        {{ group.name }}
+      </button>
+    }
+  </div>
+
+  <div class="map-card">
+    <object
+      #wineMapObject
+      type="image/svg+xml"
+      data="/maps/hungary-wine-regions.svg"
+      class="wine-map-object"
+      aria-label="Magyarország borvidékei"
+    ></object>
+
+    @if (hoveredRegionName) {
+      <div class="map-tooltip">
+        {{ hoveredRegionName }}
+      </div>
+    }
+  </div>
+</section>
+
+<section class="cards">
+  <a routerLink="/borvidekek" class="card">
+    <h2>Borvidékek</h2>
+    <p>Ismerd meg Magyarország híres borvidékeit.</p>
+  </a>
+
+  <a routerLink="/borok" class="card">
+    <h2>Borok</h2>
+    <p>Fedezd fel a különböző borkülönlegességeket.</p>
+  </a>
+</section>
+</div>
