@@ -11,5 +11,4 @@ export interface Wine {
   wineRegion: string;
   wineDistrict: string;
   color: WineColor;
-  createdBy?: string;
 }

@@ -322,7 +322,6 @@ export class Wines implements OnInit {
         wineDistrict: this.wineForm.wineDistrict.trim(),
         color: this.wineForm.color,
         imageUrl,
-        createdBy: this.currentUser.uid
       };
 
       await this.wineService.addOrUpdateWine(wine);
