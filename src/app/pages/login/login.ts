@@ -55,11 +55,20 @@ export class Login {
     this.isLoading = true;
 
     try {
-      await this.authService.login(
+      const credential = await this.authService.login(
         this.loginData.email,
         this.loginData.password
       );
-      
+
+      if (!credential.user.emailVerified) {
+        await this.authService.logout();
+
+        this.errorMessage =
+          'A bejelentkezéshez először meg kell erősítened az email címedet.';
+
+        return;
+      }
+
       alert('Sikeres bejelentkezés!');
       await this.router.navigate(['/']);
 
@@ -98,7 +107,7 @@ export class Login {
         this.registerData.password
       );
       await this.authService.logout();
-      alert('Sikeres regisztráció!');
+      alert('Sikeres regisztráció! Kaptál egy regisztrációt megerősítő emailt. Bejelentkezés előtt erősítsd meg az email címedet.');
 
        this.registerData = {
         name: '',

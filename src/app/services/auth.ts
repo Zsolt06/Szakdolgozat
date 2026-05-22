@@ -4,6 +4,7 @@ import {
   User,
   authState,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut,
   updateProfile
@@ -33,7 +34,7 @@ export class AuthService {
         await updateProfile(credential.user, {
           displayName: name
         });
-
+        await sendEmailVerification(credential.user);
         return credential;
       }
     );
