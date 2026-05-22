@@ -1,6 +1,4 @@
 .navbar {
-  /*max-width: 1400px;
-  margin: 0 auto;*/
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -50,4 +48,18 @@
 
 .nav-links a.active {
   border-bottom: 2px solid white;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  color: white;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.logout-button:hover {
+  text-decoration: underline;
 }

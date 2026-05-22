@@ -9,7 +9,17 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Kezdőlap</a>
       <a routerLink="/borvidekek" routerLinkActive="active">Borvidékek</a>
       <a routerLink="/borok" routerLinkActive="active">Borok</a>
-      <a routerLink="/bejelentkezes" routerLinkActive="active">Bejelentkezés</a>
+      @if (authReady$ | async) {
+        @if (user$ | async; as user) {
+          <a routerLink="/profil" routerLinkActive="active">Profilom</a>
+
+          <button type="button" class="logout-button" (click)="logout()">
+            Kijelentkezés
+          </button>
+        } @else {
+          <a routerLink="/bejelentkezes" routerLinkActive="active">Bejelentkezés</a>
+        }
+      }
     </div>
   </div>
 </nav>

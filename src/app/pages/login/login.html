@@ -25,6 +25,12 @@
         </button>
       </div>
 
+      @if (errorMessage) {
+        <p class="auth-message error">
+          {{ errorMessage }}
+        </p>
+      }
+
       @if (mode === 'login') {
         <form class="auth-form" (ngSubmit)="onLogin()">
           <h2>Bejelentkezés</h2>
@@ -37,6 +43,7 @@
               name="loginEmail"
               [(ngModel)]="loginData.email"
               placeholder="pelda@email.com"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               required
             />
           </div>
@@ -53,7 +60,7 @@
             />
           </div>
 
-          <button type="submit" class="auth-submit">
+          <button type="submit" class="auth-submit" [disabled]="isLoading">
             Bejelentkezés
           </button>
         </form>
@@ -83,6 +90,7 @@
               name="registerEmail"
               [(ngModel)]="registerData.email"
               placeholder="pelda@email.com"
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               required
             />
           </div>
@@ -94,7 +102,7 @@
               type="password"
               name="registerPassword"
               [(ngModel)]="registerData.password"
-              placeholder="Legalább 6 karakter"
+              placeholder="Legalább 8 karakter"
               required
             />
           </div>
@@ -111,7 +119,7 @@
             />
           </div>
 
-          <button type="submit" class="auth-submit">
+          <button type="submit" class="auth-submit" [disabled]="isLoading">
             Regisztráció
           </button>
         </form>

@@ -1,105 +1,284 @@
 <div class="wines-page">
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Borok</h1>
-      <p>
-        Böngéssz magyar borok között borrégió, borvidék, pincészet,
-        évjárat, fajta, szín és ár alapján.
-      </p>
-    </div>
-  </section>
+    <section class="hero">
+        <div class="hero-content">
+        <h1>Borok</h1>
+        <p>
+            Böngéssz magyar borok között borrégió, borvidék, pincészet,
+            évjárat, fajta, szín és ár alapján.
+        </p>
+        </div>
+    </section>
+
+    @if (currentUser) {
+        <section class="create-wine-section">
+        <button
+            type="button"
+            class="open-popup-button"
+            (click)="openCreateWinePopup()"
+        >
+            + Új bor létrehozása
+        </button>
+        </section>
+    }
+
+    @if (isWinePopupOpen) {
+        <div class="popup-backdrop">
+        <div class="wine-popup">
+
+            <div class="popup-header">
+                <div class="popup-title">
+                    <h2>
+                        {{ editingWineId ? 'Bor módosítása' : 'Új bor létrehozása' }}
+                    </h2>
+
+                    <p class="popup-subtitle">
+                        Add meg a bor adatait, majd tölts fel hozzá egy legfeljebb 3 MB méretű képet.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="popup-close"
+                    (click)="closeWinePopup()"
+                >
+                    ×
+                </button>
+            </div>
+
+            <form class="wine-form" (ngSubmit)="saveWine()">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                <label for="wineName">Név:</label>
+
+                <input
+                    id="wineName"
+                    name="wineName"
+                    [(ngModel)]="wineForm.name"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="winePrice">Ár:</label>
+
+                <input
+                    id="winePrice"
+                    name="winePrice"
+                    type="number"
+                    [(ngModel)]="wineForm.price"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="wineVintage">Évjárat:</label>
+
+                <input
+                    id="wineVintage"
+                    name="wineVintage"
+                    type="number"
+                    [(ngModel)]="wineForm.vintage"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="wineWinery">Borászat:</label>
+
+                <input
+                    id="wineWinery"
+                    name="wineWinery"
+                    [(ngModel)]="wineForm.winery"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="wineGrapes">
+                    Borfajta(cuvée esetén vesszővel elválasztva):
+                </label>
+
+                <input
+                    id="wineGrapes"
+                    name="wineGrapes"
+                    [(ngModel)]="wineForm.grapeVarietiesText"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="wineRegion">Borrégió:</label>
+
+                <input
+                    id="wineRegion"
+                    name="wineRegion"
+                    [(ngModel)]="wineForm.wineRegion"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="wineDistrict">Borvidék:</label>
+
+                <input
+                    id="wineDistrict"
+                    name="wineDistrict"
+                    [(ngModel)]="wineForm.wineDistrict"
+                    required
+                />
+                </div>
+
+                <div class="form-group">
+                <label for="wineColor">Bor típusa:</label>
+
+                <select
+                    id="wineColor"
+                    name="wineColor"
+                    [(ngModel)]="wineForm.color"
+                >
+                    <option value="Fehér">Fehér</option>
+                    <option value="Vörös">Vörös</option>
+                    <option value="Rozé">Rozé</option>
+                </select>
+                </div>
+
+                <div class="form-group">
+                <label for="wineImage">
+                    Kép feltöltése max. 3 MB
+                </label>
+
+                <input
+                    id="wineImage"
+                    name="wineImage"
+                    type="file"
+                    accept="image/*"
+                    (change)="onWineImageSelected($event)"
+                />
+                </div>
+
+            </div>
+
+            <div class="form-actions">
+
+                <button
+                type="submit"
+                class="save-wine-button"
+                [disabled]="isSavingWine"
+                >
+                {{
+                    editingWineId
+                    ? 'Módosítás mentése'
+                    : 'Bor létrehozása'
+                }}
+                </button>
+
+                <button
+                type="button"
+                class="cancel-button"
+                (click)="closeWinePopup()"
+                >
+                Mégse
+                </button>
+
+            </div>
+            </form>
+        </div>
+        </div>
+    }
 
     <section class="wines-layout">
-    <aside class="filters-card">
-        <div class="filters-header">
-            <h2>Szűrés</h2>
-            <button type="button" (click)="clearFilters()">Törlés</button>
-        </div>
-
-        <div class="filter-group">
-            <label for="wineRegion">Borrégió</label>
-            <select id="wineRegion" [(ngModel)]="filters.wineRegion">
-            <option value="">Összes</option>
-            @for (region of wineRegions; track region) {
-                <option [value]="region">{{ region }}</option>
-            }
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label for="wineDistrict">Borvidék</label>
-            <select id="wineDistrict" [(ngModel)]="filters.wineDistrict">
-            <option value="">Összes</option>
-            @for (district of wineDistricts; track district) {
-                <option [value]="district">{{ district }}</option>
-            }
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label for="winery">Borászat</label>
-            <select id="winery" [(ngModel)]="filters.winery">
-            <option value="">Összes</option>
-            @for (winery of wineries; track winery) {
-                <option [value]="winery">{{ winery }}</option>
-            }
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label for="vintage">Évjárat</label>
-            <select id="vintage" [(ngModel)]="filters.vintage">
-            <option value="">Összes</option>
-            @for (vintage of vintages; track vintage) {
-                <option [value]="vintage">{{ vintage }}</option>
-            }
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label for="grapeVariety">Borfajta</label>
-            <select id="grapeVariety" [(ngModel)]="filters.grapeVariety">
-            <option value="">Összes</option>
-            @for (grape of grapeVarieties; track grape) {
-                <option [value]="grape">{{ grape }}</option>
-            }
-            </select>
-        </div>
-
-        <div class="filter-group">
-            <label for="color">Bor típusa</label>
-            <select id="color" [(ngModel)]="filters.color">
-            <option value="">Összes</option>
-            <option value="Fehér">Fehér</option>
-            <option value="Vörös">Vörös</option>
-            <option value="Rozé">Rozé</option>
-            </select>
-        </div>
-
-        <div class="price-filter-row">
-            <div class="filter-group">
-                <label for="minPrice">Ár -tól</label>
-
-                <input
-                id="minPrice"
-                type="number"
-                [(ngModel)]="filters.minPrice"
-                placeholder="pl. 3000"
-                />
+        <aside class="filters-card">
+            <div class="filters-header">
+                <h2>Szűrés</h2>
+                <button type="button" (click)="clearFilters()">Törlés</button>
             </div>
 
             <div class="filter-group">
-                <label for="maxPrice">Ár -ig</label>
-
-                <input
-                id="maxPrice"
-                type="number"
-                [(ngModel)]="filters.maxPrice"
-                placeholder="pl. 15000"
-                />
+                <label for="wineRegion">Borrégió</label>
+                <select id="wineRegion" [(ngModel)]="filters.wineRegion">
+                <option value="">Összes</option>
+                @for (region of wineRegions; track region) {
+                    <option [value]="region">{{ region }}</option>
+                }
+                </select>
             </div>
-        </div>
-    </aside>
+
+            <div class="filter-group">
+                <label for="wineDistrict">Borvidék</label>
+                <select id="wineDistrict" [(ngModel)]="filters.wineDistrict">
+                <option value="">Összes</option>
+                @for (district of wineDistricts; track district) {
+                    <option [value]="district">{{ district }}</option>
+                }
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="winery">Borászat</label>
+                <select id="winery" [(ngModel)]="filters.winery">
+                <option value="">Összes</option>
+                @for (winery of wineries; track winery) {
+                    <option [value]="winery">{{ winery }}</option>
+                }
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="vintage">Évjárat</label>
+                <select id="vintage" [(ngModel)]="filters.vintage">
+                <option value="">Összes</option>
+                @for (vintage of vintages; track vintage) {
+                    <option [value]="vintage">{{ vintage }}</option>
+                }
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="grapeVariety">Borfajta</label>
+                <select id="grapeVariety" [(ngModel)]="filters.grapeVariety">
+                <option value="">Összes</option>
+                @for (grape of grapeVarieties; track grape) {
+                    <option [value]="grape">{{ grape }}</option>
+                }
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="color">Bor típusa</label>
+                <select id="color" [(ngModel)]="filters.color">
+                <option value="">Összes</option>
+                <option value="Fehér">Fehér</option>
+                <option value="Vörös">Vörös</option>
+                <option value="Rozé">Rozé</option>
+                </select>
+            </div>
+
+            <div class="price-filter-row">
+                <div class="filter-group">
+                    <label for="minPrice">Ár -tól</label>
+
+                    <input
+                    id="minPrice"
+                    type="number"
+                    [(ngModel)]="filters.minPrice"
+                    placeholder="pl. 3000"
+                    />
+                </div>
+
+                <div class="filter-group">
+                    <label for="maxPrice">Ár -ig</label>
+
+                    <input
+                    id="maxPrice"
+                    type="number"
+                    [(ngModel)]="filters.maxPrice"
+                    placeholder="pl. 15000"
+                    />
+                </div>
+            </div>
+        </aside>
 
         <section class="wines-content">
             <div class="results-header">
@@ -111,6 +290,7 @@
                 <div class="sort-box">
                     <label for="sortBy">Rendezés</label>
                     <select id="sortBy" [(ngModel)]="sortBy">
+                    <option value="rating-desc">Értékelés szerint</option>
                     <option value="price-asc">Ár szerint növekvő</option>
                     <option value="price-desc">Ár szerint csökkenő</option>
                     <option value="name-asc">Név szerint A-Z</option>
@@ -129,21 +309,89 @@
                         </div>
 
                         <div class="wine-card-content">
-                        <span class="wine-color">{{ wine.color }}</span>
+                            <div class="wine-top-row">
+                                <span class="wine-color">
+                                    {{ wine.color }}
+                                </span>
 
-                        <h3>{{ wine.name }}</h3>
+                                <button
+                                    type="button"
+                                    class="favorite-button"
+                                    [class.active]="isFavorite(wine.id)"
+                                    (click)="toggleFavorite(wine.id)"
+                                >
+                                    {{ isFavorite(wine.id) ? '♥ Kedvenc' : '♡ Kedvencekhez' }}
+                                </button>
+                            </div>
 
-                        <p class="wine-price">
-                            {{ wine.price }} Ft
-                        </p>
+                            <h3>{{ wine.name }}</h3>
 
-                        <div class="wine-meta">
-                            <p><strong>Évjárat:</strong> {{ wine.vintage }}</p>
-                            <p><strong>Pincészet:</strong> {{ wine.winery }}</p>
-                            <p><strong>Borfajta:</strong> {{ wine.grapeVariety }}</p>
-                            <p><strong>Borrégió:</strong> {{ wine.wineRegion }}</p>
-                            <p><strong>Borvidék:</strong> {{ wine.wineDistrict }}</p>
-                        </div>
+                            <p class="wine-price">
+                                {{ wine.price }} Ft
+                            </p>
+
+                            <div class="wine-meta">
+                                <p><strong>Évjárat:</strong> {{ wine.vintage }}</p>
+                                <p><strong>Pincészet:</strong> {{ wine.winery }}</p>
+                                <p><strong>Borfajták:</strong> {{ wine.grapeVarieties.join(', ') }}</p>
+                                <p><strong>Borrégió:</strong> {{ wine.wineRegion }}</p>
+                                <p><strong>Borvidék:</strong> {{ wine.wineDistrict }}</p>
+                            </div>
+                            <div class="rating-box">
+                                <p>Átlagértékelés:</p>
+
+                                <div class="average-rating">
+                                    <div class="stars readonly">
+                                    @for (star of [1, 2, 3, 4, 5]; track star) {
+                                        <span [class.active]="star <= getAverageRating(wine.id)">
+                                        ★
+                                        </span>
+                                    }
+                                    </div>
+
+                                    <span class="rating-number">
+                                    {{ getAverageRatingText(wine.id) }}
+                                    </span>
+
+                                    @if (getAverageRatingCount(wine.id) > 0) {
+                                    <span class="rating-count">
+                                        ({{ getAverageRatingCount(wine.id) }} értékelés)
+                                    </span>
+                                    }
+                                </div>
+                            </div>
+                            @if (currentUser) {
+                                <div class="user-rating-box">
+                                    <p>Saját értékelésem:</p>
+
+                                    <div class="stars">
+                                    @for (star of [1, 2, 3, 4, 5]; track star) {
+                                        <button
+                                        type="button"
+                                        [class.active]="star <= getRating(wine.id)"
+                                        (click)="setRating(wine.id, star)"
+                                        >
+                                        ★
+                                        </button>
+                                    }
+                                    </div>
+                                </div>
+                                } @else {
+                                <p class="login-rating-hint">
+                                    Értékeléshez jelentkezz be.
+                                </p>
+                            }
+                            @if (currentUser) {
+                                <div class="wine-admin-actions">   
+                                    <button type="button" class="edit-button" (click)="editWine(wine)">
+                                        Módosítás
+                                    </button>
+
+                                    <button type="button" class="delete-button" (click)="deleteWine(wine)">
+                                        Törlés
+                                    </button>
+                                </div>
+                            }
                         </div>
                     </article>
             } @empty {

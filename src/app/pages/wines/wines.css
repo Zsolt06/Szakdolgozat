@@ -158,7 +158,6 @@
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 700;
-  margin-bottom: 1rem;
 }
 
 .wine-card h3 {
@@ -235,6 +234,351 @@
   outline-offset: 2px;
 }
 
+.wine-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.favorite-button {
+  border: 1px solid #d9c5bc;
+  background: #fffaf7;
+  color: #7b1e3a;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.favorite-button.active {
+  background: #7b1e3a;
+  color: white;
+  border-color: #7b1e3a;
+}
+
+.rating-box {
+  margin-top: 1rem;
+  border-top: 1px solid #eadbd2;
+  padding-top: 1rem;
+}
+
+.rating-box p {
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.stars button {
+  border: none;
+  background: transparent;
+  color: #d9c5bc;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.stars button.active {
+  color: #c99832;
+}
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.stars.readonly {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.stars.readonly span {
+  color: #d9c5bc;
+  font-size: 1.4rem;
+}
+
+.stars.readonly span.active {
+  color: #c99832;
+}
+
+.rating-number {
+  color: #7b1e3a;
+  font-weight: 800;
+}
+
+.rating-count {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.user-rating-box {
+  margin-top: 1rem;
+  border-top: 1px solid #eadbd2;
+  padding-top: 1rem;
+}
+
+.user-rating-box p {
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.login-rating-hint {
+  margin-top: 1rem;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+.wine-admin-section {
+  max-width: 82rem;
+  margin: 0 auto 3rem;
+  padding: 0 2rem;
+}
+
+.wine-admin-card {
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.05);
+}
+
+.wine-admin-card h2 {
+  color: #7b1e3a;
+  margin-bottom: 1.5rem;
+}
+
+.wine-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.save-wine-button,
+.cancel-button,
+.edit-button,
+.delete-button {
+  margin-top: 1rem;
+  border: 1px solid #d9c5bc;
+  background: white;
+  color: #7b1e3a;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.save-wine-button {
+  background: #7b1e3a;
+  color: white;
+  border-color: #7b1e3a;
+}
+
+.delete-button {
+  color: #9b1c1c;
+}
+
+.save-wine-button:disabled {
+  cursor: not-allowed;
+  filter: brightness(0.95);
+}
+
+.edit-button:hover,
+.cancel-button:hover {
+  background: #f8f1ec;
+}
+
+.delete-button:hover {
+  background: #fde8e8;
+}
+
+.create-wine-section {
+  max-width: 82rem;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wine-admin-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.wine-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.open-popup-button {
+  border: none;
+  background: #7b1e3a;
+  color: white;
+  padding: 0.9rem 1.4rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 800;
+  box-shadow: 0 0.5rem 1rem rgba(123, 30, 58, 0.18);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.open-popup-button:hover {
+  background: #64172f;
+  transform: translateY(-0.1rem);
+}
+
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(32, 20, 18, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.wine-popup {
+  width: min(100%, 58rem);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: linear-gradient(to right, #fffaf7, #ffffff);
+  border: 1px solid #eadbd2;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.22);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eadbd2;
+  padding-bottom: 1rem;
+}
+
+.popup-title h2 {
+  color: #7b1e3a;
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.popup-subtitle {
+  color: #555;
+  line-height: 1.5;
+}
+
+.popup-close {
+  border: 1px solid #eadbd2;
+  background: white;
+  color: #7b1e3a;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.popup-close:hover {
+  background: #7b1e3a;
+  color: white;
+}
+
+.wine-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.wine-form .form-group {
+  background: white;
+  border: 1px solid #eadbd2;
+  border-radius: 1rem;
+  padding: 0.85rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wine-form .form-group label {
+  color: #7b1e3a;
+  font-weight: 800;
+  font-size: 0.9rem;
+  margin-bottom: 0.45rem;
+  display: block;
+}
+
+.wine-form .form-group input,
+.wine-form .form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid #d9c5bc;
+  border-radius: 0.85rem;
+  background: #fffaf7;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.wine-form .form-group input:focus,
+.wine-form .form-group select:focus {
+  outline: 2px solid #7b1e3a;
+  outline-offset: 2px;
+}
+
+
+.wine-form .form-group input[type="file"] {
+  background: white;
+  cursor: pointer;
+  padding: 0.7rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid #eadbd2;
+  padding-top: 1rem;
+}
+
+.save-wine-button,
+.cancel-button {
+  margin-top: 0;
+  padding: 0.7rem 1.2rem;
+}
+
+.save-wine-button {
+  background: #7b1e3a;
+  color: white;
+  border-color: #7b1e3a;
+}
+
+.cancel-button {
+  background: white;
+}
+
 @media (max-width: 900px) {
     .hero {
         padding: 3rem 1.25rem;
@@ -259,5 +603,18 @@
     }
     .price-filter-row {
         grid-template-columns: 1fr;
+    }
+    .wine-form .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .popup-backdrop {
+      padding: 1rem;
+    }
+
+    .wine-popup {
+      width: min(100%, 52rem);
+      max-height: 88vh;
+      padding: 1.5rem;
     }
 }

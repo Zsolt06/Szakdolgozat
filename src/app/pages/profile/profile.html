@@ -1,0 +1,75 @@
+<div class="profile-page">
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Profilom</h1>
+
+      @if (user$ | async; as user) {
+        <p>Üdv újra, {{ user.displayName || user.email }}!</p>
+      }
+    </div>
+  </section>
+
+  <section class="profile-content">
+    <article class="profile-card">
+      <h2>Kedvenc boraim</h2>
+
+      @if (favoriteWines.length > 0) {
+        <div class="wine-list">
+          @for (wine of favoriteWines; track wine.id) {
+            <div class="profile-wine-item">
+              <div>
+                <h3>{{ wine.name }}</h3>
+                <p>{{ wine.winery }}</p>
+                <span>{{ wine.wineRegion }} / {{ wine.wineDistrict }}</span>
+              </div>
+
+              <button type="button" class="remove-button" (click)="removeFavorite(wine.id)">
+                Törlés a kedvencekből
+              </button>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="muted">Még nincs kedvenc borod.</p>
+      }
+    </article>
+
+    <article class="profile-card">
+      <h2>Értékeléseim</h2>
+
+      @if (ratedWines.length > 0) {
+        <div class="wine-list">
+          @for (wine of ratedWines; track wine.id) {
+            <div class="profile-wine-item">
+              <div>
+                <h3>{{ wine.name }}</h3>
+                <p>{{ wine.winery }}</p>
+
+                <div class="stars">
+                  @for (star of [1, 2, 3, 4, 5]; track star) {
+                    <button
+                      type="button"
+                      [class.active]="star <= getRating(wine.id)"
+                      (click)="setRating(wine.id, star)"
+                    >
+                      ★
+                    </button>
+                  }
+                </div>
+              </div>
+              <button
+                    type="button"
+                    class="remove-button"
+                    (click)="removeRating(wine.id)"
+                >
+                    Értékelés törlése
+                </button>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="muted">Még nem értékeltél bort.</p>
+      }
+    </article>
+  </section>
+</div>

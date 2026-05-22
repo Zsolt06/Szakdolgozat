@@ -35,7 +35,7 @@ export class Home implements AfterViewInit {
         'balatonboglar',
         'balaton-felvidek',
         'balatonfured-csopak',
-        'nagy-somlo',
+        'somlo',
         'zala'
       ]
     },
@@ -121,8 +121,8 @@ export class Home implements AfterViewInit {
 
   private wineMapRegions: WineMapRegion[] = [
     { 
-      svgIds: ['nagy-somlo', 'nagy-somlo-1', 'nagy-somlo-2', 'nagy-somlo-3'],
-      routeId: 'nagy-somlo',
+      svgIds: ['somlo', 'nsomlo-1', 'somlo-2', 'somlo-3'],
+      routeId: 'somlo',
       name: 'Nagy-Somlói borvidék'
     },
     { 
