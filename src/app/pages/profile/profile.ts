@@ -46,11 +46,6 @@ export class Profile implements OnInit {
     this.wines = await this.wineService.getWines();
     this.favoriteWineIds = await this.userWineService.getFavoriteIds(userId);
     this.ratings = await this.userWineService.getRatingsMap(userId);
-
-    console.log('Profil borok:', this.wines);
-    console.log('Profil kedvencek:', this.favoriteWineIds);
-    console.log('Profil értékelések:', this.ratings);
-
     this.cdr.detectChanges();
   }
 
