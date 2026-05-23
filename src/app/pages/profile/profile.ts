@@ -49,11 +49,6 @@ export class Profile implements OnInit {
     this.cdr.detectChanges();
   }
 
-  async loadWines(): Promise<void> {
-    this.wines = await this.wineService.getWines();
-    this.cdr.detectChanges();
-  }
-
   get favoriteWines(): Wine[] {
     return this.wines.filter(wine => this.favoriteWineIds.includes(wine.id));
   }
