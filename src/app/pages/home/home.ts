@@ -121,7 +121,7 @@ export class Home implements AfterViewInit {
 
   private wineMapRegions: WineMapRegion[] = [
     { 
-      svgIds: ['somlo', 'nsomlo-1', 'somlo-2', 'somlo-3'],
+      svgIds: ['somlo', 'somlo-1', 'somlo-2', 'somlo-3'],
       routeId: 'somlo',
       name: 'Nagy-Somlói borvidék'
     },
